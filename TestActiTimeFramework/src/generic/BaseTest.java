@@ -12,7 +12,7 @@ import org.testng.annotations.BeforeMethod;
 
 public class BaseTest implements IAutoConstant{
 
-	static WebDriver driver;
+	protected static WebDriver driver;
 	//method to open the browsers
 	@BeforeMethod
 	public void setUp() throws IOException
