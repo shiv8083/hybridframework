@@ -1,14 +1,19 @@
 package generic;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+
+import com.google.common.io.Files;
 
 public class BaseTest implements IAutoConstant{
 
@@ -46,9 +51,24 @@ public class BaseTest implements IAutoConstant{
 		{
 			System.out.println("enter the correct choice");
 		}
-
-
 	}
+	public void failed(String methodName)
+	
+	{
+	try
+	{
+	TakesScreenshot ts = (TakesScreenshot)driver;
+	File src = ts.getScreenshotAs(OutputType.FILE);
+	File dest = new File(SCREENSHOT_PATH+methodName+".png");
+	Files.copy(src, dest);
+	}
+	catch (Exception e) {
+		// TODO: handle exception
+	}
+	
+	}
+
+	
 	@AfterMethod
 	public void tearDown()
 	{

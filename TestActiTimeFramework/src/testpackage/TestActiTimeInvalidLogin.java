@@ -23,8 +23,8 @@ public class TestActiTimeInvalidLogin extends BaseTest{
 		Reporter.log(rc+"",true);
 		for(int i=1;i<=rc;i++)
 		{
-			String invalidUsername = flib.readExelData(EXCEL_PATH, "invalidcreds", rc, 0);
-			String invalidPassword = flib.readExelData(EXCEL_PATH, "invalidcreds", rc, 1);
+			String invalidUsername = flib.readExelData(EXCEL_PATH, "invalidcreds", i, 0);
+			String invalidPassword = flib.readExelData(EXCEL_PATH, "invalidcreds", i, 1);
 			lp.actiTimeInvalidLogin(invalidUsername,invalidPassword);
 			WebElement errorMsg = lp.getErrorMsg();
 			boolean status = errorMsg.isDisplayed();
